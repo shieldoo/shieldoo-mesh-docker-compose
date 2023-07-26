@@ -81,7 +81,7 @@ services:
       - "traefik.http.routers.shieldoo-mesh-admin-fe-service.rule=Host(`localhost`) && PathPrefix(`/`)"
       - "traefik.http.routers.shieldoo-mesh-admin-fe-service.service=shieldoo-mesh-admin-fe-service"
       - "traefik.http.services.shieldoo-mesh-admin-fe-service.loadbalancer.server.port=9010"
-    image: ghcr.io/shieldoo/shieldoo-mesh-admin-fe:latest
+    image: ghcr.io/shieldoo/shieldoo-mesh-fe:latest
     restart: always
     ports:
       - "9010:9010"

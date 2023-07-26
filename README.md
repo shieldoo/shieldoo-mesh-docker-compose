@@ -58,6 +58,7 @@ For local development, you can use configurations and docker-compose.override.ym
 ## Source codes of Shieldoo Mesh components
 
 - [Shieldoo Mesh Admin](https://github.com/shieldoo/shieldoo-mesh-admin)
+- [Shieldoo Mesh FrontEnd](https://github.com/shieldoo/shieldoo-mesh-fe)
 - [Shieldoo Mesh Lighthouse](https://github.com/shieldoo/shieldoo-mesh-lighthouse)
 - [Shieldoo Mesh OAuth Server](https://github.com/shieldoo/shieldoo-mesh-oauth)
 - [Shieldoo Mesh Client (for users and servers in mesh network)](https://github.com/shieldoo/shieldoo-mesh)

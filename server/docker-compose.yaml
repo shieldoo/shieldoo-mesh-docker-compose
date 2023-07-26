@@ -100,7 +100,7 @@ services:
       - "traefik.http.services.shieldoo-mesh-admin-fe-service.loadbalancer.server.port=9010"
       - "traefik.http.routers.shieldoo-mesh-admin-fe-service.entrypoints=websecure"
       - "traefik.http.routers.shieldoo-mesh-admin-fe-service.tls.certresolver=letsencrypt"
-    image: ghcr.io/shieldoo/shieldoo-mesh-admin-fe:latest
+    image: ghcr.io/shieldoo/shieldoo-mesh-fe:latest
     restart: always
     ports:
       - "9010:9010"
