@@ -4,6 +4,8 @@
 
 Shieldoo Mesh is a network administration tool leveraging the power of open-source technology, Nebula. Developed at Slack by Nate Brown and Ryan Huber, Nebula has been proven to securely manage networks for millions of users around the globe. Shieldoo Mesh encapsulates the intricate network security in a simple, user-friendly application, allowing devices to connect securely with a few clicks, no matter where they are located.
 
+See home page of our project: https://shieldoo.io
+
 ## Key Features
 
 1. **Public IP Not Required**: Forget about the challenges of configuring a public IP. Shieldoo simplifies the process, making your network less vulnerable and more secure.
