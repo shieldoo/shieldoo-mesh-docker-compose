@@ -6,7 +6,7 @@ Shieldoo Mesh is a network administration tool leveraging the power of open-sour
 
 See home page of our project: https://shieldoo.io
 
-### Shieldoo Admin portal screenshot
+#### Shieldoo Admin portal screenshots
 
 <p>
     <img src="./img/img1.jpg" width="45%">
@@ -43,20 +43,20 @@ See home page of our project: https://shieldoo.io
 5. Clone this repository using git.
 6. Navigate into the cloned repository/server.
 7. Update the .env file with the following essential information:
-    - ADMIN_EMAIL: The email of the admin user.
-    - SHIELDOO_DOMAIN: The domain name of Shieldoo Mesh (will be used for admin.*, wss.* and login.* subdomains).
+    - `ADMIN_EMAIL`: The email of the admin user.
+    - `SHIELDOO_DOMAIN`: The domain name of Shieldoo Mesh (will be used for `admin.*`, `wss.*` and `login.*` subdomains). It means value `myshieldoo.example.com` will be used for `admin.myshieldoo.example.com`, `wss.myshieldoo.example.com` and `login.myshieldoo.example.com`.
     - LIGHTHOUSE_IP: The public IP address of the server.
-    - AAD_CLIENTID: Your Azure AD client ID.
-    - AAD_CLIENTSECRET: Your Azure AD client secret.
-    - AAD_TENANTID: Your Azure AD tenant ID.
-    - GOOGLE_CLIENTID: Your Google client ID.
-    - GOOGLE_CLIENTSECRET: Your Google client secret.
+    - `AAD_CLIENTID`: Your Azure AD client ID.
+    - `AAD_CLIENTSECRET`: Your Azure AD client secret.
+    - `AAD_TENANTID`: Your Azure AD tenant ID.
+    - `GOOGLE_CLIENTID`: Your Google client ID.
+    - `GOOGLE_CLIENTSECRET`: Your Google client secret.
 8. Run `docker-compose up -d` to start the Shieldoo Mesh server.
 
 For a production environment, generate the following secrets:
-- SERVER_JOBAPIKEY: The secret for communication with Shieldoo job API.
-- OAUTHSERVER_SECRET: Shieldoo's internal OAuth server secret.
-- LIGHTHOUSES_SECRET: The secret for lighthouse communication.
+- `SERVER_JOBAPIKEY`: The secret for communication with Shieldoo job API.
+- `OAUTHSERVER_SECRET`: Shieldoo's internal OAuth server secret.
+- `LIGHTHOUSES_SECRET`: The secret for lighthouse communication.
 - Generate JWKS keys for Shieldoo's OAuth server.
 
 ### Local development
