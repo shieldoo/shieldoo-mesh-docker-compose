@@ -65,11 +65,16 @@ For local development, you can use configurations and docker-compose.override.ym
 
 ## Source codes of Shieldoo Mesh components
 
-- [Shieldoo Mesh Admin](https://github.com/shieldoo/shieldoo-mesh-admin)
-- [Shieldoo Mesh FrontEnd](https://github.com/shieldoo/shieldoo-mesh-fe)
-- [Shieldoo Mesh Lighthouse](https://github.com/shieldoo/shieldoo-mesh-lighthouse)
-- [Shieldoo Mesh OAuth Server](https://github.com/shieldoo/shieldoo-mesh-oauth)
-- [Shieldoo Mesh Client (for users and servers in mesh network)](https://github.com/shieldoo/shieldoo-mesh)
+- [Shieldoo Mesh Admin](https://github.com/shieldoo/shieldoo-mesh-admin) [![Create release](https://github.com/shieldoo/shieldoo-mesh-admin/actions/workflows/build-release.yml/badge.svg)](https://github.com/shieldoo/shieldoo-mesh-admin/actions/workflows/build-release.yml) 
+[![Release](https://img.shields.io/github/v/release/shieldoo/shieldoo-mesh-admin?logo=GitHub&style=flat-square)](https://github.com/shieldoo/shieldoo-mesh-admin/releases/latest) 
+- [Shieldoo Mesh FrontEnd](https://github.com/shieldoo/shieldoo-mesh-fe) [![Create release](https://github.com/shieldoo/shieldoo-mesh-fe/actions/workflows/build-release.yml/badge.svg)](https://github.com/shieldoo/shieldoo-mesh-fe/actions/workflows/build-release.yml) 
+[![Release](https://img.shields.io/github/v/release/shieldoo/shieldoo-mesh-fe?logo=GitHub&style=flat-square)](https://github.com/shieldoo/shieldoo-mesh-fe/releases/latest) 
+- [Shieldoo Mesh Lighthouse](https://github.com/shieldoo/shieldoo-mesh-lighthouse) [![Create release](https://github.com/shieldoo/shieldoo-mesh-lighthouse/actions/workflows/build-release.yml/badge.svg)](https://github.com/shieldoo/shieldoo-mesh-lighthouse/actions/workflows/build-release.yml) 
+[![Release](https://img.shields.io/github/v/release/shieldoo/shieldoo-mesh-lighthouse?logo=GitHub&style=flat-square)](https://github.com/shieldoo/shieldoo-mesh-lighthouse/releases/latest) 
+- [Shieldoo Mesh OAuth Server](https://github.com/shieldoo/shieldoo-mesh-oauth) [![Create release](https://github.com/shieldoo/shieldoo-mesh-oauth/actions/workflows/build-release.yml/badge.svg)](https://github.com/shieldoo/shieldoo-mesh-oauth/actions/workflows/build-release.yml) 
+[![Release](https://img.shields.io/github/v/release/shieldoo/shieldoo-mesh-oauth?logo=GitHub&style=flat-square)](https://github.com/shieldoo/shieldoo-mesh-oauth/releases/latest) 
+- [Shieldoo Mesh Client (for users and servers in mesh network)](https://github.com/shieldoo/shieldoo-mesh) [![Create release](https://github.com/shieldoo/shieldoo-mesh/actions/workflows/build-release.yml/badge.svg)](https://github.com/shieldoo/shieldoo-mesh/actions/workflows/build-release.yml) 
+[![Release](https://img.shields.io/github/v/release/shieldoo/shieldoo-mesh?logo=GitHub&style=flat-square)](https://github.com/shieldoo/shieldoo-mesh/releases/latest) 
 
 ## Appendix
 
