@@ -1,0 +1,108 @@
+version: '3'
+services:
+  shieldoo-postgres:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "pwd123..."
+      POSTGRES_USER: shieldoo
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "shieldoo"]
+      interval: 2s
+      timeout: 5s
+      retries: 32
+
+  traefik:
+    image: traefik:v2.10
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "3000:80"
+    volumes:
+      - ./data/letsencrypt:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=true"
+    restart: always
+
+  shieldoo-mesh-admin:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.shieldoo-mesh-admin-service.rule=Host(`localhost`) && (PathPrefix(`/cliapi/`) || PathPrefix(`/api/`) || PathPrefix(`/sysapi/`) || PathPrefix(`/jobapi/`) || PathPrefix(`/login`))"
+      - "traefik.http.routers.shieldoo-mesh-admin-service.service=shieldoo-mesh-admin-service"
+      - "traefik.http.services.shieldoo-mesh-admin-service.loadbalancer.server.port=9000"
+    image: ghcr.io/shieldoo/shieldoo-mesh-admin:latest
+    restart: always
+    ports:
+      - "9000:9000"
+    depends_on:
+      shieldoo-postgres:
+        condition: service_healthy
+    volumes:
+      - ./shieldoo-mesh-admin/ca:/app/ca
+      - ./shieldoo-mesh-admin/config.yaml:/app/config.yaml
+    environment:
+      - SERVER_URI=http://localhost:9000
+      - SERVER_WEBSOCKETURL=wss://wss.xxx
+      - SERVER_JOBAPIKEY=${SERVER_JOBAPIKEY}
+      - OAUTHSERVER_SECRET=${OAUTHSERVER_SECRET}
+      - AUTH_AUTHORIZEURL=https://localhost:9001
+      - LIGHTHOUSES_SECRET=${LIGHTHOUSES_SECRET}
+      - LIGHTHOUSES_INSTANCESMAP=${LIGHTHOUSE_IP}:${LIGHTHOUSE_PORT}
+      - AUTH_ADMINUSER=${ADMIN_EMAIL}
+
+  shieldoo-mesh-oauth:
+    image: ghcr.io/shieldoo/shieldoo-mesh-oauth:latest
+    restart: always
+    ports:
+      - "9001:9001"
+    volumes:
+      - ./shieldoo-mesh-oauth/jwks:/app/jwks
+      - ./shieldoo-mesh-oauth/config.yaml:/app/config.yaml
+    environment:
+      - SERVER_URI=http://localhost:9001
+      - OAUTHSERVER_REDIRECTDOMAIN=${SHIELDOO_DOMAIN}
+      - AAD_CLIENTID=${AAD_CLIENTID}
+      - AAD_CLIENTSECRET=${AAD_CLIENTSECRET}
+      - AAD_TENANTID=${AAD_TENANTID}
+      - GOOGLE_CLIENTID=${GOOGLE_CLIENTID}
+      - GOOGLE_CLIENTSECRET=${GOOGLE_CLIENTSECRET}
+
+  shieldoo-mesh-admin-fe:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.shieldoo-mesh-admin-fe-service.rule=Host(`localhost`) && PathPrefix(`/`)"
+      - "traefik.http.routers.shieldoo-mesh-admin-fe-service.service=shieldoo-mesh-admin-fe-service"
+      - "traefik.http.services.shieldoo-mesh-admin-fe-service.loadbalancer.server.port=9010"
+    image: ghcr.io/shieldoo/shieldoo-mesh-admin-fe:latest
+    restart: always
+    ports:
+      - "9010:9010"
+    depends_on:
+      - shieldoo-mesh-admin
+
+  shieldoo-mesh-lighthouse:
+    image: ghcr.io/shieldoo/shieldoo-mesh-lighthouse:latest
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "4242:4242/udp"
+      - "9020:9020"
+    environment:
+      - DEBUG=false
+      - PUBLICIP=${LIGHTHOUSE_IP}
+      - UDPPORT=${LIGHTHOUSE_PORT}
+      - URI=http://shieldoo-mesh-admin:9000
+      - WEBSOCKETPORT=9020
+      - WSSDNSNAME=wss.xxx
+      - SECRET=${LIGHTHOUSES_SECRET}
+    depends_on:
+      - shieldoo-mesh-admin

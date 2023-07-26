@@ -1,0 +1,64 @@
+# Server configurations
+server:
+  port: 9001
+    # Log levels:
+    # PanicLevel  = 0
+    # FatalLevel  = 1
+    # ErrorLevel  = 2
+    # WarnLevel   = 3
+    # InfoLevel   = 4
+  # DebugLevel  = 5
+  # TraceLevel  = 6
+  loglevel: 5
+  uri: "XXXX"
+
+adminbackend:
+  # If variable {{AUDIENCE}} used, it will be replaced by real audience value, e.g.:
+  # "http://shd-{{AUDIENCE}}-mesh-be.shd-{{AUDIENCE}}.svc:9000" -> "http://shd-billa-mesh-be.shd-billa.svc:9000"
+  base_url: "http://shieldoo-mesh-admin:9000"
+
+oauthserver:
+  signing:
+    # Enabled values for method: HS256 and RS256
+    method: RS256
+    # rs256: required when method is RS256
+    rs256:
+      private_key_path: jwks/app.rsa
+      public_key_path: jwks/app.rsa.pub
+      jwk_id: 2022030801
+    # hs256: required when method is HS256
+  #    hs256:
+  #      secret: 8RCjReWTnn2a6p2ba4GVHc7wGweJKZuq
+
+  duration: 86400
+  internal_duration: 120
+  redirect_domain: "shieldoo.dev"
+  # If audience missing, use default audience
+  default_audience: register
+  issuer: "http://shieldoo-mesh-oauth:9001"
+  static_audience:
+    - name: localhost
+      authorize: true
+      redirect: http://localhost:3000?from=oauth
+
+# AAD
+aad:
+  clientid: 00000000-0000-0000-0000-000000000000
+  clientsecret: XXXX
+  # Multitenant application, tenant is microsoftaccounts.onmicrosoft.com for live accounts
+  tenantid: 00000000-0000-0000-0000-000000000000
+  callback_url: "callback/microsoft"
+  jwksuri: "https://login.microsoftonline.com/common/discovery/v2.0/keys"
+  # Issuers defined using regex to tbe able to validate various issuers with diferent tenants
+  issuers:
+    - "https:\\/\\/login\\.microsoftonline\\.com\\/([a-zA-Z0-9-]+)\\/v2\\.0"
+    - "https:\\/\\/sts\\.windows\\.net\\/([a-zA-Z0-9-]+)\\/"
+    
+# google
+google:
+  clientid: 0000000000.apps.googleusercontent.com
+  clientsecret: XXXX
+  callback_url: "callback/google"
+  issuers:
+    - "https://accounts.google.com"
+

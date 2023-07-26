@@ -1,0 +1,53 @@
+# Server configurations
+server:
+  port: 9000
+  # Log levels:
+    # PanicLevel  = 0
+    # FatalLevel  = 1
+    # ErrorLevel  = 2
+    # WarnLevel   = 3
+    # InfoLevel   = 4
+    # DebugLevel  = 5
+    # TraceLevel  = 6
+  loglevel: 4
+  uri: "XXXX"
+  jobapikey: XXXX
+  websocketurl: "XXXX"
+
+oauthserver:
+  secret: 8R1112223334445556667788999000uq
+  duration: 86400
+
+auth:
+  admin_user: XXXXX
+  issuer: "http://shieldoo-mesh-oauth:9001"
+  internal_issuer: "http://shieldoo-mesh-oauth:9001"
+  # Leave empty to use with Login Shieldoo (audience: [])
+  audience: ["localhost"]
+  # Authorize URL required for both Azure AD and Login Shieldoo
+  authorize_url: "XXXX"
+  # tenantid for shieldoo login platform
+  shieldoo:
+    tenantid: "localhost"
+
+# Database credentials
+database:
+  url: "postgres://shieldoo:pwd123...@shieldoo-postgres:5432/shieldoo"
+  maxrecords: 100
+  log:
+    # Silent  = 1
+    # Error   = 2
+    # Warn    = 3
+    # Info    = 4
+    loglevel: 3
+    slowqueryms: 5000
+    ignorerecordnotfound: true
+    colorful: false
+
+# lighthouses config
+lighthouses:
+  maxlighthouses: 4
+  secret: XXXX
+  instances:
+    - address: 4.210.95.152
+      port: 4242
