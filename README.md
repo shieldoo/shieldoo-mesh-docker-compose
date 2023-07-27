@@ -57,7 +57,8 @@ For a production environment, generate the following secrets:
 - `SERVER_JOBAPIKEY`: The secret for communication with Shieldoo job API.
 - `OAUTHSERVER_SECRET`: Shieldoo's internal OAuth server secret.
 - `LIGHTHOUSES_SECRET`: The secret for lighthouse communication.
-- Generate JWKS keys for Shieldoo's OAuth server.
+- Generate JWKS keys for Shieldoo's OAuth server in folder shieldoo-mesh-oauth/jwks - [see there](https://github.com/shieldoo/shieldoo-mesh-docker-compose#rsa-keypair-generation-for-rsa256-jwt)
+- generate new CA keys in folder shieldoo-mesh-admin/ca - [see there](https://github.com/shieldoo/shieldoo-mesh-docker-compose#generate-nebula-ca)
 
 ### Local development
 
@@ -119,3 +120,16 @@ ssh-keygen -t rsa -b 4096 -m PEM -f app.rsa
 # Don't add passphrase
 openssl rsa -in app.rsa -pubout -outform PEM -out app.rsa.pub
 ```
+
+### Generate Nebula CA
+
+To set up a Nebula CA, you'll need:
+
+#### 1. The [Nebula binaries](https://github.com/slackhq/nebula/releases) or [Distribution Packages](https://github.com/slackhq/nebula#distribution-packages) for your specific platform. Specifically you'll need `nebula-cert` and the specific nebula binary for each platform you use.
+
+#### 2. A Nebula certificate authority, which will be the root of trust for a shieldoo network.
+
+  ```
+  ./nebula-cert ca -name "Myorganization, Inc"
+  ```
+  This will create files named `ca.key` and `ca.cert` in the current directory. The `ca.key` file is the most sensitive file you'll create, because it is the key used to sign the certificates for individual nebula nodes/hosts. Please store this file in folder `shieldoo-mesh-admin/ca`.
