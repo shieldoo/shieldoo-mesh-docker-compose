@@ -53,12 +53,13 @@ See home page of our project: https://shieldoo.io
     - `GOOGLE_CLIENTSECRET`: Your Google client secret.
 8. Run `docker-compose up -d` to start the Shieldoo Mesh server.
 
-For a production environment, generate the following secrets:
-- `SERVER_JOBAPIKEY`: The secret for communication with Shieldoo job API.
-- `OAUTHSERVER_SECRET`: Shieldoo's internal OAuth server secret.
-- `LIGHTHOUSES_SECRET`: The secret for lighthouse communication.
-- Generate JWKS keys for Shieldoo's OAuth server in folder shieldoo-mesh-oauth/jwks - [see there](https://github.com/shieldoo/shieldoo-mesh-docker-compose#rsa-keypair-generation-for-rsa256-jwt)
-- generate new CA keys in folder shieldoo-mesh-admin/ca - [see there](https://github.com/shieldoo/shieldoo-mesh-docker-compose#generate-nebula-ca)
+> **Warning**
+> For a production environment, generate the following secrets:
+> - `SERVER_JOBAPIKEY`: The secret for communication with Shieldoo job API.
+> - `OAUTHSERVER_SECRET`: Shieldoo's internal OAuth server secret.
+> - `LIGHTHOUSES_SECRET`: The secret for lighthouse communication.
+> - Generate JWKS keys for Shieldoo's OAuth server in folder shieldoo-mesh-oauth/jwks - [see there](https://github.com/shieldoo/shieldoo-mesh-docker-compose#rsa-keypair-generation-for-rsa256-jwt)
+> - generate new CA keys in folder shieldoo-mesh-admin/ca - [see there](https://github.com/shieldoo/shieldoo-mesh-docker-compose#generate-nebula-ca)
 
 ### Local development
 
