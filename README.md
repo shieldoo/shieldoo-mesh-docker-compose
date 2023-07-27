@@ -53,7 +53,7 @@ See home page of our project: https://shieldoo.io
     - `GOOGLE_CLIENTSECRET`: Your Google client secret.
 8. Run `docker-compose up -d` to start the Shieldoo Mesh server.
 
-> **Warning**
+> :warning: **Warning** -
 > For a production environment, generate the following secrets:
 > - `SERVER_JOBAPIKEY`: The secret for communication with Shieldoo job API.
 > - `OAUTHSERVER_SECRET`: Shieldoo's internal OAuth server secret.
