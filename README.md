@@ -61,9 +61,24 @@ See home page of our project: https://shieldoo.io
 > - Generate JWKS keys for Shieldoo's OAuth server in folder shieldoo-mesh-oauth/jwks - [see there](https://github.com/shieldoo/shieldoo-mesh-docker-compose#rsa-keypair-generation-for-rsa256-jwt)
 > - generate new CA keys in folder shieldoo-mesh-admin/ca - [see there](https://github.com/shieldoo/shieldoo-mesh-docker-compose#generate-nebula-ca)
 
+> :warning: **Warning** -
+> You can enable also Basic Authentication for Shieldoo Mesh Admin portal. You can use the following ENV variables to enable and configure it, but than you have to solve security consideration implications by yourself (for example no MFA, no SSO, no password rotation, etc.):
+> - `BASICAUTH_ENABLED="true"`
+> - `BASICAUTH_USERS=''`
+>
+> The `BASICAUTH_USERS` variable is a list of users in the htaccess format. You can use this [online generator](https://www.web2generators.com/apache-tools/htpasswd-generator) to generate the list of users. Or you can use command line tool `htpasswd` to generate the list of users by `htpasswd -nm username` then copy the result into here separated by `|` character.
+
 ### Local development
 
 For local development, you can use configurations and docker-compose.override.yml file from the `localhost` folder.
+
+Localhost configuration is shipped with enabled Basic Authentication for Shieldoo Mesh Admin portal. You can use the following credentials to log in:
+- email: `user@example.com`
+- password: `password`
+
+Basic Authentication is enabled and configured by these ENV variables:
+- `BASICAUTH_ENABLED="true"`
+- `BASICAUTH_USERS='user@example.com:$apr1$jI2jqzEg$MyNJQxhcZFNygXP79xT/p.|'`
 
 ## Source codes of Shieldoo Mesh components
 
