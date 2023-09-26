@@ -51,7 +51,9 @@ See home page of our project: https://shieldoo.io
     - `AAD_TENANTID`: Your Azure AD tenant ID.
     - `GOOGLE_CLIENTID`: Your Google client ID.
     - `GOOGLE_CLIENTSECRET`: Your Google client secret.
-8. Run `docker-compose up -d` to start the Shieldoo Mesh server.
+8. Run `. .env;sed -i s/shieldoodev.cloudfield.dev/$SHIELDOO_DOMAIN/ docker-compose.yaml`
+   to update the `docker-compose.yaml` with your `$SHIELDOO_DOMAIN`.
+9. Run `docker-compose up -d` to start the Shieldoo Mesh server.
 
 > :warning: **Warning** -
 > For a production environment, generate the following secrets:
@@ -146,6 +148,6 @@ To set up a Nebula CA, you'll need:
 #### 2. A Nebula certificate authority, which will be the root of trust for a shieldoo network.
 
   ```
-  ./nebula-cert ca -name "Myorganization, Inc"
+  ./nebula-cert ca -duration 118760h -name "Myorganization, Inc"
   ```
-  This will create files named `ca.key` and `ca.cert` in the current directory. The `ca.key` file is the most sensitive file you'll create, because it is the key used to sign the certificates for individual nebula nodes/hosts. Please store this file in folder `shieldoo-mesh-admin/ca`.
+  This will create files named `ca.key` and `ca.cert` in the current directory. The `ca.key` file is the most sensitive file you'll create, because it is the key used to sign the certificates for individual nebula nodes/hosts. Move both files to the folder `shieldoo-mesh-admin/ca`.
